@@ -1,0 +1,737 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Matemática Octavo · Convocatoria 01-2026</title><style>
+:root{--bg:#f4f6f8;--card:#fff;--ink:#17202a;--muted:#65707d;--line:#dbe1e7;--accent:#1f5d99;--ok:#1f7a4d;--bad:#b23a3a}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line)}.topbar{max-width:1100px;margin:auto;padding:10px 16px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}.brand{font-weight:800}.meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.pill{padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:#fafbfc;font-size:14px}.timer{font-variant-numeric:tabular-nums;font-weight:800}
+main{max-width:1100px;margin:22px auto;padding:0 16px 40px}.card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 4px 18px #0000000b;padding:18px}#startView{text-align:center;padding:42px 24px}.hero{font-size:34px;margin:0 0 10px}.sub{color:var(--muted);max-width:760px;margin:0 auto 22px;line-height:1.5}
+button{border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer;background:#e9eef3;color:var(--ink)}button.primary{background:var(--accent);color:#fff}button.danger{background:#7b1f1f;color:#fff}button:disabled{opacity:.45;cursor:not-allowed}.exam-layout{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:18px}.qhead{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}.qnum{font-size:20px;font-weight:800}.status{color:var(--muted);font-size:14px}.qtext{font-size:18px;line-height:1.55}.context{margin:12px 0 16px;padding:12px;background:#f8fafc;border:1px solid var(--line);border-radius:10px}.context p{margin:.4em 0}.visual-note{color:var(--muted);font-size:14px}table{border-collapse:collapse;width:100%;margin:8px 0;font-size:15px}th,td{border:1px solid #cfd7df;padding:7px;text-align:left}.original-centered th,.original-centered td{text-align:center}th{background:#eef3f7}.choices{display:grid;gap:10px;margin-top:16px}.choice{text-align:left;font-size:16px;padding:13px;background:#f7f9fb;border:2px solid var(--line)}.choice.selected{border-color:var(--accent);background:#eaf2fb}.choice.correct{border-color:var(--ok);background:#eaf7ef}.choice.wrong{border-color:var(--bad);background:#fdecec}.optletter{display:inline-block;width:28px;font-weight:900}.navbuttons{display:flex;justify-content:space-between;gap:10px;margin-top:16px}.side h3{margin-top:0}.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}.qjump{padding:7px 0;border-radius:7px;font-size:12px}.qjump.current{outline:2px solid var(--accent)}.qjump.answered{background:#dff0e7}.qjump.unanswered{background:#eef1f4}.small{font-size:13px;color:var(--muted);line-height:1.4}.qfigure{margin:18px 0;text-align:center;background:#fff;border:1.5px solid #000;padding:14px;box-sizing:border-box}.qfigure img{display:block;max-width:100%;max-height:560px;width:auto;height:auto;margin:0 auto;background:#fff;object-fit:contain}.original{margin-top:16px}.original summary{cursor:pointer;color:var(--accent);font-weight:700}.original img{display:block;max-width:100%;max-height:70vh;margin:10px auto 0;border:1px solid var(--line);border-radius:8px}.result{display:none}.score{font-size:42px;font-weight:900}.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.stat{padding:14px;border:1px solid var(--line);border-radius:10px;text-align:center}.review-list{display:grid;gap:8px;max-height:430px;overflow:auto;margin-top:14px}.review-row{display:grid;grid-template-columns:72px 1fr 1fr;gap:10px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;font-size:14px}.good{color:var(--ok);font-weight:700}.bad{color:var(--bad);font-weight:700}.review-solution{grid-column:1/-1;padding:10px 12px;background:#f8fafc;border-left:4px solid var(--accent);border-radius:6px;line-height:1.45}.review-solution b{display:block;margin-bottom:4px}
+@media(max-width:800px){.exam-layout{grid-template-columns:1fr}.side{order:-1}.grid{grid-template-columns:repeat(10,1fr)}.hero{font-size:27px}.review-row{grid-template-columns:55px 1fr 1fr}.qtext{font-size:17px}}
+.item1-original th{text-align:center}.item1-original td:first-child{text-align:left}.item1-original td:nth-child(2){text-align:center}
+.item2-original th,.item2-original td{text-align:center}
+.item4-original th,.item4-original td{text-align:center}
+.item56-original th,.item56-original td{text-align:center}
+.item1112-original th{text-align:center}
+.item1112-original td:first-child{text-align:left}
+.item1112-original td:not(:first-child){text-align:center}
+.item46-original th,.item46-original td{text-align:center}
+
+.exam-subtitle{
+  margin-top:6px;
+  font-size:14px;
+  font-weight:600;
+  color:#0057B8;
+}
+
+
+.exam-intro{
+  margin-top:14px;
+  font-size:14px;
+  line-height:1.55;
+}
+.exam-intro ul{
+  margin:0;
+  padding-left:22px;
+}
+.exam-intro li{
+  margin:5px 0;
+}
+.exam-encouragement{
+  margin-top:10px;
+  font-weight:700;
+  color:#0057B8;
+}
+
+
+.exam-intro ul{
+  list-style-position:outside;
+  padding-left:18px !important;
+  margin-left:0 !important;
+}
+.exam-intro li{
+  padding-left:0 !important;
+  margin-left:0 !important;
+}
+.exam-intro li::marker{
+  font-size:0.9em;
+}
+
+
+.exam-intro{margin-top:14px;font-size:14px;line-height:1.55}
+.exam-intro .intro-line{display:flex;align-items:flex-start;gap:6px;margin:5px 0}
+.exam-intro .intro-bullet{display:inline-block;flex:0 0 auto;font-weight:700;line-height:1.55}
+.exam-encouragement{margin-top:10px;font-weight:700;color:#0057B8}
+
+
+.exam-encouragement{
+  margin-top:12px !important;
+  font-size:17px !important;
+  font-weight:700 !important;
+  color:#7B2CBF !important;
+}
+
+
+.instructions-title{
+  font-weight:700;
+  margin-bottom:7px;
+}
+.exam-intro .intro-line{
+  display:flex;
+  align-items:flex-start;
+  gap:5px;
+  margin:5px 0;
+}
+.exam-intro .intro-bullet{
+  flex:0 0 auto;
+  font-weight:700;
+}
+
+
+.exam-intro,
+.exam-intro .instructions-title,
+.exam-intro .intro-line,
+.exam-intro .intro-line span{
+  text-align:left !important;
+}
+.exam-intro{
+  width:100%;
+  margin-left:0 !important;
+  margin-right:0 !important;
+}
+
+
+.choice:disabled{cursor:not-allowed!important;opacity:.72}
+
+.exam-encouragement{
+  text-align:center !important;
+  width:100% !important;
+  display:block !important;
+}
+
+
+.exam-intro .intro-line{display:flex !important;align-items:flex-start !important;gap:5px !important;text-align:left !important;}
+.exam-intro .intro-bullet{display:inline-block !important;flex:0 0 auto !important;font-weight:700 !important;}
+.exam-encouragement{text-align:center !important;width:100% !important;display:block !important;}
+
+.calculator-approved-image{
+  width:100%;
+  margin:14px 0 18px;
+  text-align:center;
+}
+.calculator-approved-image img{
+  display:block;
+  width:100%;
+  max-width:1100px;
+  height:auto;
+  object-fit:contain;
+  margin:0 auto;
+}
+
+
+.calculator-brand-title{
+  text-align:center;
+  font-size:20px;
+  font-weight:700;
+  margin:14px 0 6px;
+  color:#1f2937;
+}
+
+
+.calculator-approved-image img{
+  display:block !important;
+  width:100% !important;
+  max-width:1200px !important;
+  height:auto !important;
+  object-fit:contain !important;
+  margin:0 auto !important;
+}
+
+</style>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)'], ['$', '$']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+
+<style>
+.tabla-item2 th:nth-child(n+2):nth-child(-n+5),
+.tabla-item2 td:nth-child(n+2):nth-child(-n+5){
+    text-align:center !important;
+    vertical-align:middle !important;
+}
+</style>
+
+
+<style>
+.tabla-item11 th, .tabla-item11 td{
+    border:1px solid #000;
+    padding:6px 8px;
+}
+.tabla-item11{
+    border-collapse:collapse;
+    margin:8px 0;
+}
+.tabla-item11 th{
+    text-align:center;
+}
+.tabla-item11 td:first-child{
+    text-align:left;
+}
+.tabla-item11 td:nth-child(n+2){
+    text-align:center;
+}
+</style>
+
+
+<style>
+/* Uniformar el texto acentuado de las fórmulas del ítem 11 */
+.formulas-item11 mjx-mtext,
+.formulas-item11 mjx-mtext *{
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 1em !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+}
+</style>
+
+
+<style>
+/* Fracciones del ítem 11 con la misma tipografía del texto normal */
+.formulas-item11 .html-frac{
+    display:inline-flex;
+    flex-direction:column;
+    vertical-align:middle;
+    text-align:center;
+    font-family:inherit !important;
+    font-size:inherit !important;
+    line-height:1.15;
+    margin:0 .18em;
+}
+.formulas-item11 .html-frac .frac-top,
+.formulas-item11 .html-frac .frac-bottom{
+    font-family:inherit !important;
+    font-size:inherit !important;
+    font-weight:inherit !important;
+    font-style:normal !important;
+    white-space:nowrap;
+}
+.formulas-item11 .html-frac .frac-top{
+    border-bottom:1.3px solid currentColor;
+    padding:0 .22em .10em;
+}
+.formulas-item11 .html-frac .frac-bottom{
+    padding:.10em .22em 0;
+}
+</style>
+
+
+<style id="q26-formula-style">
+.q26-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+  width:100%;
+}
+.q26-copy{flex:1;min-width:0;}
+.q26-formula-box{
+  flex:0 0 auto;
+  width:168px;
+  height:66px;
+  border:1.5px solid #111;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:16px;
+  color:#111;
+  white-space:nowrap;
+}
+.q26-left{
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:16px;
+  font-style:normal;
+}
+.q26-frac{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:center;
+  line-height:1.05;
+  font-family:Arial,Helvetica,sans-serif;
+  font-style:normal;
+}
+.q26-num{
+  display:block;
+  padding:0 5px 4px 5px;
+  border-bottom:1.5px solid #111;
+  text-align:center;
+}
+.q26-den{
+  display:block;
+  padding-top:4px;
+  text-align:center;
+}
+@media (max-width:700px){
+  .q26-top{align-items:flex-start;gap:14px;}
+  .q26-formula-box{width:160px;height:64px;}
+}
+</style>
+
+
+<style id="q26-after-style">
+.q26-formula-after{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:12px;
+  margin-bottom:4px;
+}
+</style>
+
+
+<style id="q26-order-final">
+.q26-formula-after{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:14px;
+  margin-bottom:18px;
+}
+</style>
+
+
+<style id="q26-angle-svg-style">
+.q26-left{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+}
+.q26-angle-symbol{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+}
+.q26-angle-symbol svg{display:block;}
+</style>
+
+
+<style id="plain-formula-boxes-after-q26">
+.formula-after-stem{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:14px;
+  margin-bottom:18px;
+}
+.plain-formula-box{
+  min-width:145px;
+  min-height:64px;
+  padding:8px 16px;
+  border:1.5px solid #111;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:16px;
+  font-style:normal;
+  color:#111;
+}
+.plain-frac{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:center;
+  line-height:1.05;
+}
+.plain-num{
+  display:block;
+  padding:0 5px 4px;
+  border-bottom:1.5px solid #111;
+  text-align:center;
+}
+.plain-den{
+  display:block;
+  padding-top:4px;
+  text-align:center;
+}
+</style>
+
+<style id="q1-table-pdf-style">
+.q1-pdf-table{
+  border-collapse:collapse !important;
+  border-spacing:0 !important;
+  width:auto !important;
+  margin:14px auto !important;
+  border-top:1.4px solid #222 !important;
+  border-bottom:1.4px solid #222 !important;
+}
+.q1-pdf-table th,
+.q1-pdf-table td{
+  border:none !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  padding:6px 18px !important;
+  white-space:nowrap !important;
+}
+.q1-pdf-table th:first-child,
+.q1-pdf-table td:first-child{
+  text-align:left !important;
+}
+.q1-pdf-table th:not(:first-child),
+.q1-pdf-table td:not(:first-child){
+  text-align:center !important;
+}
+.q1-pdf-table tr:first-child th,
+.q1-pdf-table tr:first-child td{
+  border-bottom:1.4px solid #222 !important;
+}
+/* En el PDF de la pregunta 1 NO hay líneas verticales
+   ni líneas horizontales entre las filas de datos. */
+.q1-pdf-table th + th,
+.q1-pdf-table th + td,
+.q1-pdf-table td + th,
+.q1-pdf-table td + td{
+  border-left:none !important;
+}
+.q1-pdf-table tr:not(:first-child) th,
+.q1-pdf-table tr:not(:first-child) td{
+  border-top:none !important;
+  border-bottom:none !important;
+}
+</style>
+
+
+<style id="item1-original-pdf-style">
+.item1-original{
+  border-collapse:collapse !important;
+  border-spacing:0 !important;
+  width:auto !important;
+  margin:14px auto !important;
+  border-top:1.5px solid #111 !important;
+  border-bottom:1.5px solid #111 !important;
+}
+.item1-original th,
+.item1-original td{
+  border:none !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  padding:7px 14px !important;
+  white-space:nowrap !important;
+}
+.item1-original tr:first-child th{
+  border-bottom:1.5px solid #111 !important;
+}
+.item1-original th:first-child,
+.item1-original td:first-child{
+  text-align:left !important;
+}
+.item1-original th:nth-child(2),
+.item1-original td:nth-child(2){
+  text-align:center !important;
+}
+/* Sin líneas verticales ni líneas entre filas de datos, como en el PDF. */
+.item1-original th + th,
+.item1-original td + td{
+  border-left:none !important;
+}
+.item1-original tr:not(:first-child) td{
+  border-top:none !important;
+  border-bottom:none !important;
+}
+</style>
+
+
+<style id="tablas-pdf-restantes">
+/* PREGUNTA 5: sin líneas verticales ni divisiones entre filas de datos */
+.item5-original{
+  border-collapse:collapse !important;
+  border-spacing:0 !important;
+  width:auto !important;
+  margin:14px auto !important;
+  border-top:1.5px solid #111 !important;
+  border-bottom:1.5px solid #111 !important;
+}
+.item5-original th,
+.item5-original td{
+  border:none !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  padding:6px 14px !important;
+  white-space:nowrap !important;
+}
+.item5-original thead th{
+  border-bottom:1.5px solid #111 !important;
+}
+.item5-original th:first-child,
+.item5-original td:first-child{
+  text-align:left !important;
+}
+.item5-original th:not(:first-child),
+.item5-original td:not(:first-child){
+  text-align:center !important;
+}
+
+/* PREGUNTAS 2, 4, 11 y 46: el PDF sí muestra cuadrícula completa */
+.tabla-item2,
+.item4-original,
+.tabla-item11,
+.item46-original{
+  border-collapse:collapse !important;
+  border-spacing:0 !important;
+  width:auto !important;
+  margin:14px auto !important;
+  border:1.4px solid #111 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+  background:transparent !important;
+}
+.tabla-item2 th, .tabla-item2 td,
+.item4-original th, .item4-original td,
+.tabla-item11 th, .tabla-item11 td,
+.item46-original th, .item46-original td{
+  border:1.4px solid #111 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  border-radius:0 !important;
+  padding:6px 12px !important;
+  text-align:center !important;
+  white-space:nowrap !important;
+}
+
+/* Primera columna de 4 y 11 a la izquierda como en el original */
+.item4-original th:first-child,
+.item4-original td:first-child,
+.tabla-item11 th:first-child,
+.tabla-item11 td:first-child{
+  text-align:left !important;
+}
+
+/* Primera columna de 46 centrada, como en el PDF */
+.item46-original th:first-child,
+.item46-original td:first-child{
+  text-align:center !important;
+}
+</style>
+
+
+<style id="q2-first-column-left">
+.tabla-item2 th:first-child,
+.tabla-item2 td:first-child{
+  text-align:left !important;
+}
+</style>
+
+
+<style id="q36-option-graphs-style">
+.q36-option-graph{display:block;width:min(390px,100%);height:auto;margin:4px auto;}
+</style>
+
+
+<style id="q37-bullets-style">
+.q37-bullets{margin:14px 0 4px 24px;line-height:1.9;}
+</style>
+
+
+<style id="responsive-calculadoras">
+@media (max-width: 760px) {
+  /* CASIO: el contenedor exterior es el que se desplaza horizontalmente. */
+  #casio-mobile-scroll {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch !important;
+    overscroll-behavior-x: contain;
+    padding-bottom: 14px !important;
+  }
+
+  /* El título permanece normal; solo la fila de calculadoras es ancha. */
+  #casio-mobile-scroll > .casio-mobile-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, 390px) !important;
+    gap: 10px !important;
+    width: 1190px !important;
+    min-width: 1190px !important;
+    max-width: none !important;
+    justify-content: start !important;
+    align-items: start !important;
+  }
+
+  #casio-mobile-scroll > .casio-mobile-row > div {
+    box-sizing: border-box !important;
+    width: 390px !important;
+    min-width: 390px !important;
+    max-width: 390px !important;
+    overflow: visible !important;
+  }
+
+  #casio-mobile-scroll > .casio-mobile-row > div > div:first-child {
+    box-sizing: border-box !important;
+    width: auto !important;
+    max-width: 370px !important;
+    white-space: nowrap !important;
+  }
+
+  #casio-mobile-scroll > .casio-mobile-row img {
+    display: block !important;
+    width: auto !important;
+    max-width: 360px !important;
+    height: auto !important;
+    object-fit: contain !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* El desplazamiento usado en escritorio para la tercera imagen
+     se neutraliza en celular para que no invada otras zonas. */
+  #casio-mobile-scroll > .casio-mobile-row img[style*="translateY"] {
+    transform: none !important;
+  }
+
+  /* GENÉRICAS: se mantiene el desplazamiento horizontal aprobado. */
+  #calculadoras-genericas {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 12px !important;
+  }
+
+  #calculadoras-genericas > div:last-child {
+    justify-content: start !important;
+  }
+}
+
+@media (max-width: 760px) {
+  /* Tercera Casio (NO RECOMENDADA): más grande y más arriba */
+  /* Tercera Casio en celular:
+     se sube el CONTENEDOR completo para evitar recortar la calculadora. */
+  #casio-mobile-scroll > .casio-mobile-row > div:nth-child(3) > div:last-child {
+    margin-top: -78px !important;
+    overflow: hidden !important;
+    justify-content: center !important;
+    align-items: flex-end !important;
+  }
+
+  #casio-mobile-scroll > .casio-mobile-row > div:nth-child(3) img {
+    width: 520px !important;
+    max-width: none !important;
+    height: auto !important;
+    position: relative !important;
+    left: 50% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    /* Corrección óptica: centra el cuerpo de la calculadora, no el lienzo completo. */
+    transform: translateX(-36%) !important;
+    box-sizing: border-box !important;
+  }
+}
+
+</style>
+
+<style>.seg{text-decoration:overline}.quad-symbol{display:inline-block;font-size:1.28em;line-height:.7;vertical-align:-.06em;margin-right:1px}.qfigure{width:100%!important;margin:18px auto!important;text-align:center!important}.qfigure img{display:block!important;max-width:100%!important;width:440px!important;height:auto!important;max-height:none!important;margin:0 auto!important;transform:none!important}.qtext{line-height:1.65}.choice{line-height:1.5}.context table{max-width:520px;margin:14px auto}.review-row{cursor:pointer}button:focus-visible{outline:3px solid #166cc0;outline-offset:3px}</style><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231f5d99'/%3E%3Ctext x='7' y='24' font-size='24' fill='white'%3E7%3C/text%3E%3C/svg%3E"><style>.frac{display:inline-flex;vertical-align:middle;flex-direction:column;text-align:center;line-height:1.15;font-size:.94em;white-space:nowrap;margin:0 .10em}.frac>span:first-child{border-bottom:1.4px solid currentColor;padding:0 .18em .05em}.frac>span:last-child{padding:.05em .18em 0}.inline-eq{display:inline-flex;align-items:center;gap:3px;white-space:nowrap;vertical-align:middle}.seg{text-decoration:overline;text-decoration-thickness:1.3px}.claims{margin:12px 0 14px 16px}.claims p{display:flex;gap:14px;align-items:start}.claims b{min-width:24px}.tiny-table{font-size:13px;width:auto;max-width:100%}.tiny-table th,.tiny-table td{padding:4px 7px;white-space:nowrap}.choice:has(table){overflow-x:auto}.tie-boxes{display:flex;justify-content:space-around;flex-wrap:wrap;gap:16px;margin:20px 0}.tie-boxes>div{text-align:center;min-width:105px}.tie-boxes>div>div{border:1.5px solid #222;margin-top:8px;text-align:left;padding:12px;line-height:2.05}.qfigure{border:0;padding:5px}.qfigure img{max-height:560px}.context{line-height:1.55}.context table{max-width:480px}</style></head><body>
+<header><div class="topbar"><div class="brand">Matemática Octavo · Convocatoria 01-2026</div><div class="meta"><span class="pill">Modo examen</span><span class="pill">Respondidas: <b id="countTop">0/55</b></span><span class="pill timer" id="timerTop">03:00:00</span></div></div></header>
+<main><section id="startView" class="card"><h1 class="hero">Matemática Octavo · Convocatoria 01-2026</h1>
+<div style="text-align:center; margin:14px 0 18px;"><button class="primary" id="startBtn">Iniciar Prueba</button></div>
+<div class="exam-subtitle">Elaborado por: Carlos Madrigal Gutiérrez</div>
+<div class="exam-intro">
+  <div class="instructions-title">Instrucciones:</div>
+  <div class="intro-line"><span class="intro-bullet">•</span><span>Versión interactiva con las 55 preguntas.</span></div>
+  <div class="intro-line"><span class="intro-bullet">•</span><span>Las representaciones gráficas necesarias aparecen directamente dentro de cada pregunta.</span></div>
+  <div class="intro-line"><span class="intro-bullet">•</span><span>La prueba contiene 55 preguntas de selección única, cada una con cuatro opciones de respuesta.</span></div>
+  <div class="intro-line"><span class="intro-bullet">•</span><span>Puedes moverte entre preguntas, devolverte o avanzar y responder en el momento que creas necesario, eso sí, si el tiempo se agota la prueba se cierra y no te dejará seguir respondiendo.</span></div>
+  <div class="intro-line"><span class="intro-bullet">•</span><span>Es recomendable tener a la mano papel y lápiz para ir resolviendo los ejercicios de la prueba.</span></div>
+  <div class="intro-line"><span class="intro-bullet">•</span><span>Dispones de 3 horas para responder la prueba.</span></div>
+  <div class="intro-line"><span class="intro-bullet">•</span><span>No puedes utilizar calculadora para esta prueba.</span></div>
+  <div class="intro-line"><span class="intro-bullet">•</span><span>El ítem 7 tiene un error en las opciones del PDF y queda sin calificación; se explica al terminar.</span></div>
+
+<p class="sub"></p></section>
+<section id="examView" style="display:none"><div class="exam-layout"><div class="card"><div class="qhead"><div class="qnum" id="qnum"></div><div class="status" id="qstatus"></div></div><div id="qcontext" class="context"></div><div id="qtext" class="qtext"></div><div id="qfigure" class="qfigure" style="display:none"><img id="qfigureimg" alt="Representación gráfica del ítem"></div><div id="qaftergraphic" class="qfigure" style="display:none"><img id="qaftergraphicimg" alt="Opciones gráficas del ítem"></div><div id="choices" class="choices"></div><div class="navbuttons"><button id="prevBtn">← Anterior</button><button id="nextBtn">Siguiente →</button></div></div><aside class="card side"><h3>Navegación</h3><div id="grid" class="grid"></div><p class="small" id="countSide">0 de 55 respondidos</p><button class="danger" id="finishBtn" style="width:100%;margin-top:8px">Finalizar examen</button></aside></div></section>
+<section id="resultView" class="card result"><h2>Resultado</h2><div class="score" id="scoreText">0/55</div><div id="percentText"></div><div class="result-grid"><div class="stat"><b id="correctStat">0</b><br>Correctas</div><div class="stat"><b id="wrongStat">0</b><br>Incorrectas</div><div class="stat"><b id="blankStat">0</b><br>Sin responder</div></div><button id="reviewBtn">Revisar respuestas</button> <button class="primary" id="restartBtn">Reiniciar</button><div id="review" class="review-list" style="display:none"></div></section><div id="restartConfirm" role="presentation" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(15,23,42,.58);align-items:center;justify-content:center;padding:20px;">
+<div role="alertdialog" aria-modal="true" aria-labelledby="restartConfirmTitle" aria-describedby="restartConfirmText" style="box-sizing:border-box;width:min(100%,440px);padding:24px;background:#fff;border-radius:16px;box-shadow:0 18px 56px rgba(0,0,0,.28);text-align:center;">
+<h2 id="restartConfirmTitle" style="margin:0 0 12px;color:#173b70;">¿Reiniciar el examen?</h2>
+<p id="restartConfirmText" style="margin:0 0 22px;line-height:1.55;">Se borrarán tus respuestas y el tiempo transcurrido.</p>
+<div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;"><button id="cancelRestartBtn" type="button">Cancelar</button><button id="confirmRestartBtn" class="danger" type="button">Sí, reiniciar</button></div>
+</div></div></main><script>
+const FIGURES={"14":"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20570%20475%22%20role%3D%22img%22%3E%3Cstyle%3Etext%7Bfont%3A17px%20Arial%2Csans-serif%3Bfill%3A%23111%7D.line%7Bstroke%3A%23111%3Bstroke-width%3A2.2%3Bfill%3Anone%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%7D.dot%7Bfill%3A%23111%7D%3C%2Fstyle%3E%3Crect%20width%3D%22570%22%20height%3D%22475%22%20fill%3D%22white%22%2F%3E%3Cpath%20d%3D%22M101%2032V396%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M137%2032V396%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M173%2032V396%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M209%2032V396%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M245%2032V396%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M281%2032V396%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M317%2032V396%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M353%2032V396%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M389%2032V396%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M425%2032V396%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M461%2032V396%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M101%20396H461%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M101%20360H461%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M101%20324H461%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M101%20288H461%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M101%20252H461%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M101%20216H461%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M101%20180H461%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M101%20144H461%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M101%20108H461%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M101%2072H461%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20d%3D%22M101%2036H461%22%20stroke%3D%22%23555%22%20stroke-width%3D%221%22%20stroke-dasharray%3D%225%204%22%2F%3E%3Cpath%20class%3D%22line%22%20d%3D%22M89%20180H476%22%20%2F%3E%3Cpath%20class%3D%22line%22%20d%3D%22M245%20404V20%22%20%2F%3E%3Cpath%20d%3D%22M476%20180l-9%20-5v10z%20M245%2020l-5%2010h10z%22%20fill%3D%22%23111%22%2F%3E%3Ctext%20x%3D%22486%22%20y%3D%22185%22%20text-anchor%3D%22middle%22%3Ex%3C%2Ftext%3E%3Ctext%20x%3D%22245%22%20y%3D%2212%22%20text-anchor%3D%22middle%22%3Ey%3C%2Ftext%3E%3Ctext%20x%3D%22130%22%20y%3D%22171%22%20text-anchor%3D%22end%22%3E-3%3C%2Ftext%3E%3Ctext%20x%3D%22166%22%20y%3D%22171%22%20text-anchor%3D%22end%22%3E-2%3C%2Ftext%3E%3Ctext%20x%3D%22202%22%20y%3D%22171%22%20text-anchor%3D%22end%22%3E-1%3C%2Ftext%3E%3Ctext%20x%3D%22289%22%20y%3D%22171%22%20text-anchor%3D%22start%22%3E1%3C%2Ftext%3E%3Ctext%20x%3D%22361%22%20y%3D%22171%22%20text-anchor%3D%22start%22%3E3%3C%2Ftext%3E%3Ctext%20x%3D%22397%22%20y%3D%22171%22%20text-anchor%3D%22start%22%3E4%3C%2Ftext%3E%3Ctext%20x%3D%22433%22%20y%3D%22171%22%20text-anchor%3D%22start%22%3E5%3C%2Ftext%3E%3Ctext%20x%3D%22232%22%20y%3D%22389%22%20text-anchor%3D%22end%22%3E-6%3C%2Ftext%3E%3Ctext%20x%3D%22232%22%20y%3D%22353%22%20text-anchor%3D%22end%22%3E-5%3C%2Ftext%3E%3Ctext%20x%3D%22232%22%20y%3D%22317%22%20text-anchor%3D%22end%22%3E-4%3C%2Ftext%3E%3Ctext%20x%3D%22232%22%20y%3D%22281%22%20text-anchor%3D%22end%22%3E-3%3C%2Ftext%3E%3Ctext%20x%3D%22232%22%20y%3D%22245%22%20text-anchor%3D%22end%22%3E-2%3C%2Ftext%3E%3Ctext%20x%3D%22232%22%20y%3D%22209%22%20text-anchor%3D%22end%22%3E-1%3C%2Ftext%3E%3Ctext%20x%3D%22232%22%20y%3D%22137%22%20text-anchor%3D%22end%22%3E1%3C%2Ftext%3E%3Ctext%20x%3D%22232%22%20y%3D%22101%22%20text-anchor%3D%22end%22%3E2%3C%2Ftext%3E%3Ctext%20x%3D%22232%22%20y%3D%2265%22%20text-anchor%3D%22end%22%3E3%3C%2Ftext%3E%3Ctext%20x%3D%22232%22%20y%3D%2229%22%20text-anchor%3D%22end%22%3E4%3C%2Ftext%3E%3Ctext%20x%3D%22254%22%20y%3D%22197%22%20text-anchor%3D%22start%22%3E0%3C%2Ftext%3E%3Cpath%20class%3D%22line%22%20d%3D%22M137%20252%20L173%20252%20L173%20324%20L137%20288%20L137%20252%22%20%2F%3E%3Cpath%20class%3D%22line%22%20d%3D%22M317%20180%20L353%20180%20L353%20144%20L317%20108%20L317%20180%22%20%2F%3E%3Ctext%20x%3D%22326%22%20y%3D%22171%22%20text-anchor%3D%22start%22%3E2%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22137%22%20cy%3D%22252%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22126%22%20y%3D%22239%22%20text-anchor%3D%22middle%22%3EP%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22173%22%20cy%3D%22252%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22183%22%20y%3D%22240%22%20text-anchor%3D%22middle%22%3EQ%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22173%22%20cy%3D%22324%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22182%22%20y%3D%22344%22%20text-anchor%3D%22middle%22%3ER%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22137%22%20cy%3D%22288%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22124%22%20y%3D%22309%22%20text-anchor%3D%22middle%22%3ES%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22245%22%20cy%3D%22216%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22257%22%20y%3D%22234%22%20text-anchor%3D%22middle%22%3EA%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22317%22%20cy%3D%22180%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22305%22%20y%3D%22200%22%20text-anchor%3D%22middle%22%3EE%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22353%22%20cy%3D%22180%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22363%22%20y%3D%22200%22%20text-anchor%3D%22middle%22%3EF%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22353%22%20cy%3D%22144%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22365%22%20y%3D%22140%22%20text-anchor%3D%22middle%22%3EG%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22317%22%20cy%3D%22108%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22306%22%20y%3D%2298%22%20text-anchor%3D%22middle%22%3EH%3C%2Ftext%3E%3C%2Fsvg%3E","16":"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20720%20220%22%20role%3D%22img%22%3E%3Cstyle%3Etext%7Bfont%3A17px%20Arial%2Csans-serif%3Bfill%3A%23111%7D.line%7Bstroke%3A%23111%3Bstroke-width%3A2.2%3Bfill%3Anone%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%7D.dot%7Bfill%3A%23111%7D%3C%2Fstyle%3E%3Cpath%20class%3D%22line%22%20d%3D%22M42%2045H270L145%20181Z%22%20%2F%3E%3Cpath%20class%3D%22line%22%20d%3D%22M348%20158L415%2075L480%20158Z%22%20%2F%3E%3Ctext%20x%3D%2231%22%20y%3D%2243%22%20text-anchor%3D%22middle%22%3EE%3C%2Ftext%3E%3Ctext%20x%3D%22278%22%20y%3D%2243%22%20text-anchor%3D%22middle%22%3EF%3C%2Ftext%3E%3Ctext%20x%3D%22145%22%20y%3D%22204%22%20text-anchor%3D%22middle%22%3ED%3C%2Ftext%3E%3Ctext%20x%3D%22335%22%20y%3D%22169%22%20text-anchor%3D%22middle%22%3ET%3C%2Ftext%3E%3Ctext%20x%3D%22415%22%20y%3D%2266%22%20text-anchor%3D%22middle%22%3ER%3C%2Ftext%3E%3Ctext%20x%3D%22490%22%20y%3D%22169%22%20text-anchor%3D%22middle%22%3ES%3C%2Ftext%3E%3Ctext%20x%3D%22156%22%20y%3D%2234%22%20text-anchor%3D%22middle%22%3E21%3C%2Ftext%3E%3Ctext%20x%3D%2281%22%20y%3D%22125%22%20text-anchor%3D%22middle%22%3E15%3C%2Ftext%3E%3Ctext%20x%3D%22232%22%20y%3D%22125%22%20text-anchor%3D%22middle%22%3E18%3C%2Ftext%3E%3Ctext%20x%3D%22414%22%20y%3D%22181%22%20text-anchor%3D%22middle%22%3E7%3C%2Ftext%3E%3Crect%20x%3D%22520%22%20y%3D%2259%22%20width%3D%22180%22%20height%3D%2252%22%20fill%3D%22white%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%2F%3E%3Cpath%20class%3D%22line%22%20d%3D%22M538%2091l6-12%206%2012z%20M634%2091l6-12%206%2012z%22%20%2F%3E%3Ctext%20x%3D%22578%22%20y%3D%2292%22%20text-anchor%3D%22middle%22%3EDEF%3C%2Ftext%3E%3Cpath%20class%3D%22line%22%20d%3D%22M606%2083q5-6%2010%200t10%200%22%20%2F%3E%3Ctext%20x%3D%22670%22%20y%3D%2292%22%20text-anchor%3D%22middle%22%3ERST%3C%2Ftext%3E%3C%2Fsvg%3E","19":"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20620%20300%22%20role%3D%22img%22%3E%3Cstyle%3Etext%7Bfont%3A17px%20Arial%2Csans-serif%3Bfill%3A%23111%7D.line%7Bstroke%3A%23111%3Bstroke-width%3A2.2%3Bfill%3Anone%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%7D.dot%7Bfill%3A%23111%7D%3C%2Fstyle%3E%3Cpath%20class%3D%22line%22%20d%3D%22M30%2055H350%20M30%20155H350%20M30%20255H350%22%20%2F%3E%3Cpath%20class%3D%22line%22%20d%3D%22M75%20280L290%2024%22%20%2F%3E%3Cpath%20class%3D%22line%22%20d%3D%22M283.5%20285L324%2015%22%20%2F%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22265%22%20cy%3D%2255%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22254%22%20y%3D%2244%22%20text-anchor%3D%22middle%22%3EA%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22318%22%20cy%3D%2255%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22333%22%20y%3D%2247%22%20text-anchor%3D%22middle%22%3ED%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22181%22%20cy%3D%22155%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22169%22%20y%3D%22146%22%20text-anchor%3D%22middle%22%3EB%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22303%22%20cy%3D%22155%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22319%22%20y%3D%22149%22%20text-anchor%3D%22middle%22%3EE%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%2298%22%20cy%3D%22255%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%2286%22%20y%3D%22246%22%20text-anchor%3D%22middle%22%3EC%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22288%22%20cy%3D%22255%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22304%22%20y%3D%22249%22%20text-anchor%3D%22middle%22%3EF%3C%2Ftext%3E%3Crect%20x%3D%22390%22%20y%3D%2275%22%20width%3D%22200%22%20height%3D%22150%22%20fill%3D%22white%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%2F%3E%3Ctext%20x%3D%22490%22%20y%3D%22109%22%20text-anchor%3D%22middle%22%3EA%20%E2%80%93%20B%20%E2%80%93%20C%3C%2Ftext%3E%3Ctext%20x%3D%22490%22%20y%3D%22145%22%20text-anchor%3D%22middle%22%3ED%20%E2%80%93%20E%20%E2%80%93%20F%3C%2Ftext%3E%3Ctext%20x%3D%22437%22%20y%3D%22198%22%20text-anchor%3D%22middle%22%3EAD%3C%2Ftext%3E%3Ctext%20x%3D%22470%22%20y%3D%22198%22%20text-anchor%3D%22middle%22%3E%E2%88%A5%3C%2Ftext%3E%3Ctext%20x%3D%22505%22%20y%3D%22198%22%20text-anchor%3D%22middle%22%3EBE%3C%2Ftext%3E%3Ctext%20x%3D%22535%22%20y%3D%22198%22%20text-anchor%3D%22middle%22%3E%E2%88%A5%3C%2Ftext%3E%3Ctext%20x%3D%22566%22%20y%3D%22198%22%20text-anchor%3D%22middle%22%3ECF%3C%2Ftext%3E%3Cpath%20class%3D%22line%22%20d%3D%22M425%20176h24%20M493%20176h24%20M554%20176h24%22%20%2F%3E%3C%2Fsvg%3E","22":"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20420%20320%22%20role%3D%22img%22%3E%3Cstyle%3Etext%7Bfont%3A17px%20Arial%2Csans-serif%3Bfill%3A%23111%7D.line%7Bstroke%3A%23111%3Bstroke-width%3A2.2%3Bfill%3Anone%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%7D.dot%7Bfill%3A%23111%7D%3C%2Fstyle%3E%3Cpath%20class%3D%22line%22%20d%3D%22M120%2074H280V275H120Z%22%20%2F%3E%3Cpath%20class%3D%22line%22%20d%3D%22M170%2028H330V229H170Z%22%20%2F%3E%3Cpath%20class%3D%22line%22%20d%3D%22M120%2074L170%2028%20M280%2074L330%2028%20M280%20275L330%20229%20M120%20275L170%20229%22%20%2F%3E%3Cpath%20class%3D%22line%22%20d%3D%22M170%2028V229%20M170%20229H330%22%20%2F%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22170%22%20cy%3D%2228%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22160%22%20y%3D%2213%22%20text-anchor%3D%22middle%22%3EA%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22330%22%20cy%3D%2228%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22342%22%20y%3D%2214%22%20text-anchor%3D%22middle%22%3ED%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22120%22%20cy%3D%2274%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22102%22%20y%3D%2264%22%20text-anchor%3D%22middle%22%3EB%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22280%22%20cy%3D%2274%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22268%22%20y%3D%2263%22%20text-anchor%3D%22middle%22%3EE%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22120%22%20cy%3D%22275%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22103%22%20y%3D%22294%22%20text-anchor%3D%22middle%22%3EC%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22280%22%20cy%3D%22275%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22283%22%20y%3D%22297%22%20text-anchor%3D%22middle%22%3EF%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22170%22%20cy%3D%22229%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22179%22%20y%3D%22252%22%20text-anchor%3D%22middle%22%3EK%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22330%22%20cy%3D%22229%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22345%22%20y%3D%22237%22%20text-anchor%3D%22middle%22%3EG%3C%2Ftext%3E%3C%2Fsvg%3E","24":"data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20670%20340%22%20role%3D%22img%22%3E%3Cstyle%3Etext%7Bfont%3A17px%20Arial%2Csans-serif%3Bfill%3A%23111%7D.line%7Bstroke%3A%23111%3Bstroke-width%3A2.2%3Bfill%3Anone%3Bstroke-linecap%3Around%3Bstroke-linejoin%3Around%7D.dot%7Bfill%3A%23111%7D%3C%2Fstyle%3E%3Cpath%20class%3D%22line%22%20d%3D%22M45%20290L293%20290L440%20200%20M45%20290L165%20200%22%20%2F%3E%3Cpath%20class%3D%22line%22%20d%3D%22M240%2035L45%20290%20M240%2035L293%20290%20M240%2035L440%20200%20M240%2035L365%20244%20M240%2035L240%20240%22%20%2F%3E%3Cpath%20d%3D%22M240%2035L165%20200%20M165%20200L440%20200%22%20stroke%3D%22%23111%22%20stroke-width%3D%222%22%20stroke-dasharray%3D%227%206%22%20fill%3D%22none%22%2F%3E%3Cpath%20class%3D%22line%22%20d%3D%22M240%20227h13v13h-13%22%20%2F%3E%3Cpath%20class%3D%22line%22%20d%3D%22M359%20234l10%20-6%206%2010%22%20%2F%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22240%22%20cy%3D%2235%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22240%22%20y%3D%2222%22%20text-anchor%3D%22middle%22%3EP%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%2245%22%20cy%3D%22290%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%22307%22%20text-anchor%3D%22middle%22%3EA%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22165%22%20cy%3D%22200%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22148%22%20y%3D%22206%22%20text-anchor%3D%22middle%22%3EB%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22440%22%20cy%3D%22200%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22451%22%20y%3D%22204%22%20text-anchor%3D%22middle%22%3EC%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22293%22%20cy%3D%22290%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22295%22%20y%3D%22310%22%20text-anchor%3D%22middle%22%3ED%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22240%22%20cy%3D%22240%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22234%22%20y%3D%22270%22%20text-anchor%3D%22middle%22%3EQ%3C%2Ftext%3E%3Ccircle%20class%3D%22dot%22%20cx%3D%22365%22%20cy%3D%22244%22%20r%3D%223.2%22%2F%3E%3Ctext%20x%3D%22377%22%20y%3D%22259%22%20text-anchor%3D%22middle%22%3ER%3C%2Ftext%3E%3Crect%20x%3D%22472%22%20y%3D%22115%22%20width%3D%22180%22%20height%3D%22100%22%20fill%3D%22white%22%20stroke%3D%22black%22%20stroke-width%3D%222%22%2F%3E%3Ctext%20x%3D%22562%22%20y%3D%22153%22%20text-anchor%3D%22middle%22%3EQ%3A%20centro%20de%20la%20base%3C%2Ftext%3E%3Ctext%20x%3D%22562%22%20y%3D%22190%22%20text-anchor%3D%22middle%22%3ED%20%E2%80%93%20R%20%E2%80%93%20C%3C%2Ftext%3E%3C%2Fsvg%3E"};
+const AFTER_FIGURES={};
+const QUESTIONS=[{"n":1,"stem":"Considere las siguientes afirmaciones:<div class=\"claims\"><p><b>I.</b> <span class=\"frac\"><span>2</span><span>5</span></span> &gt; <span class=\"frac\"><span>1</span><span>2</span></span></p><p><b>II.</b> <span class=\"frac\"><span>1</span><span>5</span></span> = 0,25</p></div>De ellas son verdaderas","opts":["ambas.","ninguna.","solo la I.","solo la II."],"answer":"B","context":""},{"n":2,"stem":"¿Cuál de los siguientes números tiene expansión decimal periódica?","opts":["<span class=\"frac\"><span>2</span><span>3</span></span>","<span class=\"frac\"><span>4</span><span>5</span></span>","<span class=\"frac\"><span>5</span><span>2</span></span>","<span class=\"frac\"><span>5</span><span>4</span></span>"],"answer":"A","context":""},{"n":3,"stem":"La siguiente expresión mixta 2<span class=\"frac\"><span>2</span><span>3</span></span> es equivalente a","opts":["<span class=\"frac\"><span>4</span><span>3</span></span>","<span class=\"frac\"><span>5</span><span>2</span></span>","<span class=\"frac\"><span>7</span><span>2</span></span>","<span class=\"frac\"><span>8</span><span>3</span></span>"],"answer":"D","context":""},{"n":4,"stem":"La cantidad en kilogramos de pasas que se utilizarán para realizar los pastelillos corresponde a","opts":["0,2","1,2","0,5","1,5"],"answer":"C","context":"Para responder los ítems 4 y 5 considere la siguiente información:<p>Ania preparará pastelillos para sus amigos. Algunos de los ingredientes y cantidades que utilizará se describen en la siguiente tabla:</p><table class=\"original-centered\"><tr><th>Ingredientes</th><th>Cantidad en<br>kilogramos</th></tr><tr><td>Harina</td><td>2,5</td></tr><tr><td>Pasas</td><td><span class=\"frac\"><span>1</span><span>2</span></span></td></tr><tr><td>Azúcar</td><td>1<span class=\"frac\"><span>1</span><span>2</span></span></td></tr><tr><td>Chocolate</td><td>0,750</td></tr></table>"},{"n":5,"stem":"Considere las siguientes afirmaciones:<div class=\"claims\"><p><b>I.</b> Se utilizará <span class=\"frac\"><span>3</span><span>4</span></span> kg de harina.</p><p><b>II.</b> Se utilizará más azúcar que chocolate.</p></div>De ellas son verdaderas","opts":["ambas.","ninguna.","solo la I.","solo la II."],"answer":"D","context":""},{"n":6,"stem":"El resultado de <span class=\"frac\"><span>4</span><span>3</span></span> + <span class=\"frac\"><span>3</span><span>5</span></span> corresponde a","opts":["<span class=\"frac\"><span>10</span><span>3</span></span>","<span class=\"frac\"><span>10</span><span>13</span></span>","<span class=\"frac\"><span>29</span><span>15</span></span>","<span class=\"frac\"><span>19</span><span>10</span></span>"],"answer":"C","context":""},{"n":7,"stem":"El resultado de la expresión <span class=\"frac\"><span>9</span><span>4</span></span> + 0,5 corresponde a","opts":["<span class=\"frac\"><span>9</span><span>8</span></span>","<span class=\"frac\"><span>9</span><span>2</span></span>","<span class=\"frac\"><span>8</span><span>9</span></span>","<span class=\"frac\"><span>2</span><span>9</span></span>"],"answer":null,"context":""},{"n":8,"stem":"Maribel compra un terreno de 6000 metros cuadrados y decide sembrar en <span class=\"frac\"><span>2</span><span>5</span></span> partes de dicha propiedad. De acuerdo con la información dada en ese terreno la cantidad de metros cuadrados que quedaron sin sembrar corresponde a","opts":["3600","2600","2000","1200"],"answer":"A","context":""},{"n":9,"stem":"Daniela compra 4<span class=\"frac\"><span>1</span><span>2</span></span> kg de clavos y 1,5 kg de tornillos. Si ella paga con ₡5000, entonces, ¿cuál es el monto, en colones, que recibe de vuelto?","opts":["2300","2900","3100","3300"],"answer":"A","context":"Para responder los ítems 9 y 10 considere los precios de los siguientes artículos en una ferretería:<ul><li>₡400 cada kg de clavos</li><li>₡600 cada kg de tornillos</li><li>₡2000 cada metro cuadrado de azulejo</li></ul>"},{"n":10,"stem":"Si en la ferretería venden el azulejo por caja y cada caja tiene 1<span class=\"frac\"><span>1</span><span>4</span></span> de metro cuadrado, entonces, ¿cuál es el valor que tienen, en colones, 4 cajas de azulejo?","opts":["8 500","9 000","10 000","10 500"],"answer":"C","context":""},{"n":11,"stem":"El resultado de 2 · <span class=\"frac\"><span>1</span><span>5</span></span> − <span class=\"frac\"><span>1</span><span>10</span></span> corresponde a","opts":["<span class=\"frac\"><span>1</span><span>5</span></span>","<span class=\"frac\"><span>3</span><span>10</span></span>","<span class=\"frac\"><span>−1</span><span>5</span></span>","<span class=\"frac\"><span>−3</span><span>10</span></span>"],"answer":"B","context":""},{"n":12,"stem":"El resultado de \\(\\dfrac{3}{5}+\\left(\\dfrac{-5}{8}\\div\\dfrac{1}{4}\\right)^{-1}\\) corresponde a","opts":["\\(\\dfrac{-19}{10}\\)","\\(\\dfrac{-2}{3}\\)","\\(\\dfrac{7}{5}\\)","\\(\\dfrac{1}{5}\\)"],"answer":"D","context":""},{"n":13,"stem":"La expresión \\(\\sqrt[4]{\\dfrac{1}{16}}\\) es equivalente a","opts":["\\(\\dfrac{3}{12}\\)","\\(\\dfrac{1}{12}\\)","\\(\\dfrac{1}{2}\\)","\\(\\dfrac{1}{4}\\)"],"answer":"C","context":""},{"n":14,"stem":"<span class=\"seg\">PQ</span> es homólogo con","opts":["<span class=\"seg\">GF</span>","<span class=\"seg\">FE</span>","<span class=\"seg\">HG</span>","<span class=\"seg\">HE</span>"],"answer":"B","context":"Para responder los ítems 14 y 15 considere que el polígono del primer cuadrante es producto de aplicarle una homotecia centrada en A al polígono PQRS:"},{"n":15,"stem":"Se cumple que el ∠S es homólogo con","opts":["∠H","∠E","∠F","∠G"],"answer":"D","context":""},{"n":16,"stem":"Considere las siguientes afirmaciones:<div class=\"claims\"><p><b>I.</b> \\(\\dfrac{\\overline{DE}}{\\overline{RS}}=\\dfrac{\\overline{DF}}{\\overline{RT}}\\)</p><p><b>II.</b> \\(\\angle D\\cong\\angle R\\)</p></div>De ellas son verdaderas","opts":["ambas.","ninguna.","solo la I.","solo la II."],"answer":"A","context":"Para responder los ítems 16 y 17 considere los siguientes triángulos semejantes:"},{"n":17,"stem":"La medida del <span class=\"seg\">RS</span> corresponde a","opts":["5","6","7","8"],"answer":"A","context":""},{"n":18,"stem":"Sean △KLN y △XYZ tal que KL = XY, KN = XZ y m∠K = m∠X, entonces, el criterio que garantiza que △KLN ≅ △XYZ corresponde a","opts":["L – L – L","A – L – A","L – A – L","A – A – A"],"answer":"C","context":""},{"n":19,"stem":"Si <span class=\"seg\">AB</span> = 18, <span class=\"seg\">BC</span> = 12 y <span class=\"seg\">DE</span> = 15, entonces, la medida de <span class=\"seg\">EF</span> corresponde a","opts":["7","8","9","10"],"answer":"D","context":"Para responder los ítems 19 y 20 considere los datos de la siguiente figura:"},{"n":20,"stem":"Si <span class=\"seg\">AC</span> = 25, <span class=\"seg\">AB</span> = 15 y <span class=\"seg\">DE</span> = 12, entonces, la medida de <span class=\"seg\">DF</span> corresponde a","opts":["19","20","21","24"],"answer":"B","context":""},{"n":21,"stem":"Un edificio proyecta una sombra de 60 metros en el mismo momento en el que un árbol de 5 metros de altura proyecta una sombra de 7,5 metros. Si el edificio y el árbol están en el mismo plano, entonces, ¿cuántos metros de altura tiene el edificio?","opts":["20","40","48","52"],"answer":"B","context":""},{"n":22,"stem":"Una cara del prisma corresponde a","opts":["CKDE","FGAB","ABCK","ABFG"],"answer":"C","context":"Para responder los ítems 22 y 23 considere el siguiente prisma recto:"},{"n":23,"stem":"Si se le hace un corte al prisma con un plano perpendicular a los planos de las bases, entonces, la figura resultante corresponde con certeza a un","opts":["triángulo.","romboide.","hexágono.","rectángulo."],"answer":"D","context":""},{"n":24,"stem":"¿Cuál de los siguientes segmentos corresponde a la apotema de la pirámide?","opts":["<span class=\"seg\">PR</span>","<span class=\"seg\">QD</span>","<span class=\"seg\">QR</span>","<span class=\"seg\">PD</span>"],"answer":"A","context":"Para responder los ítems 24 y 25 considere la siguiente pirámide recta de base rectangular:"},{"n":25,"stem":"Considere las siguientes afirmaciones:<div class=\"claims\"><p><b>I.</b> El ápice o cúspide de la pirámide se representa por la letra P.</p><p><b>II.</b> La sección plana que se forma al intersecar en más de un punto a la pirámide con un plano paralelo a la base corresponde a un rectángulo.</p></div>De ellas son verdaderas","opts":["ambas.","ninguna.","solo la I.","solo la II."],"answer":"A","context":""},{"n":26,"stem":"Axa ganó ₡1 000 000 y al cumplirse el primer mes de haber ganado ese monto, ella gastó ₡250 000 y así sucesivamente mes a mes.<p>Si “y” representa la cantidad de dinero que queda del monto original transcurrido “x” meses desde que ella ganó ese dinero, entonces, ¿cuál de las siguientes opciones contiene una representación correcta de la situación expuesta?</p>","opts":["<table class=\"original-centered tiny-table\"><tr><th>x</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr><tr><th>y</th><td>0</td><td>250 000</td><td>500 000</td><td>750 000</td><td>1 000 000</td></tr></table>","<table class=\"original-centered tiny-table\"><tr><th>x</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr><tr><th>y</th><td>1 000 000</td><td>750 000</td><td>500 000</td><td>250 000</td><td>0</td></tr></table>","<table class=\"original-centered tiny-table\"><tr><th>x</th><th>0</th><th>1</th><th>2</th><th>3</th></tr><tr><th>y</th><td>250 000</td><td>500 000</td><td>750 000</td><td>1 000 000</td></tr></table>","<table class=\"original-centered tiny-table\"><tr><th>x</th><th>1</th><th>2</th><th>3</th><th>4</th></tr><tr><th>y</th><td>1 000 000</td><td>750 000</td><td>500 000</td><td>250 000</td></tr></table>"],"answer":"B","context":""},{"n":27,"stem":"Alonso trabaja repartiendo paquetes en una empresa de encomiendas. Él cobra un monto fijo de ₡2000 por viaje más ₡150 por cada kilómetro que deba recorrer.<p>De acuerdo con la información dada, si “y” representa el salario de Alonso en función de “x” cantidad de kilómetros recorridos, entonces, la expresión que describe la situación descrita corresponde a</p>","opts":["y = 1850x","y = 2150x","y = 2000x + 150","y = 150x + 2000"],"answer":"D","context":""},{"n":28,"stem":"¿Cuál opción contiene un par de monomios semejantes?","opts":["2a²b, 2ab²","2x²y, −3xy²","2m²n, 3m²n","−2p²y, −3py²"],"answer":"C","context":""},{"n":29,"stem":"El resultado de la expresión (m²n)³ · mn² corresponde a","opts":["m⁷n⁵","m⁷n³","m⁶n⁶","m⁶n⁵"],"answer":"A","context":""},{"n":30,"stem":"La expresión (3x − y)(3x + y) es equivalente a","opts":["6x² − y²","9x² − y²","6x² − 12xy − y²","9x² − 12xy + y²"],"answer":"B","context":""},{"n":31,"stem":"La expresión (x − 4y)² es equivalente a","opts":["x² − 16y²","x² + 8xy − 16y²","x² − 8xy + 16y²","x² − 8xy − 16y²"],"answer":"C","context":""},{"n":32,"stem":"El valor numérico de −mk² + 3p, para m = −1, k = 3 y p = −2 corresponde a","opts":["−15","−11","0","3"],"answer":"D","context":""},{"n":33,"stem":"El resultado de (x⁴⁰)² ÷ x³⁰ corresponde a","opts":["x¹²","x⁵⁰","x⁷²","x¹¹⁰"],"answer":"B","context":""},{"n":34,"stem":"El resultado de (2m³ − m)(m² + 1) corresponde a","opts":["2m⁵ − m","2m⁵ + m³ − m","2m⁶ + m³ − m","2m³ + 3m² − 2"],"answer":"B","context":""},{"n":35,"stem":"¿Cuál de las siguientes expresiones presenta una ecuación?","opts":["x + 1","x − 2","2x = 4","2 + 1 = 3"],"answer":"C","context":""},{"n":36,"stem":"Al despejar “m” en la expresión 2m − 1 = 6n + 3, se obtiene que m = _________.","opts":["8n + 5","4n + 2","3n + 1","3n + 2"],"answer":"D","context":""},{"n":37,"stem":"Considere las siguientes afirmaciones:<div class=\"claims\"><p><b>I.</b> La solución de 2x = 0 es vacía.</p><p><b>II.</b> La expresión 2(x − 3) = 2x − 6 posee infinitas soluciones.</p></div>De ellas son verdaderas","opts":["ambas.","ninguna.","solo la I.","solo la II."],"answer":"D","context":""},{"n":38,"stem":"La solución de <span class=\"frac\"><span>3m − 4</span><span>4m + 1</span></span> = <span class=\"frac\"><span>1</span><span>2</span></span> corresponde a","opts":["<span class=\"frac\"><span>9</span><span>2</span></span>","<span class=\"frac\"><span>9</span><span>10</span></span>","<span class=\"frac\"><span>−7</span><span>2</span></span>","<span class=\"frac\"><span>−7</span><span>10</span></span>"],"answer":"A","context":""},{"n":39,"stem":"Para obtener la edad de Sonia hay que restarle dos años a la edad de Ligia y luego dividir entre 3. Si la suma de ambas edades es 38 años, entonces, ¿cuántos años tiene Sonia?","opts":["8","9","13","19"],"answer":"B","context":""},{"n":40,"stem":"Considere las siguientes afirmaciones:<div class=\"claims\"><p><b>I.</b> <span>La expresión a + 3c = 2a + 1 es equivalente a <span class=\"inline-eq\">c = <span class=\"frac\"><span>a + 1</span><span>3</span></span></span>.</span></p><p><b>II.</b> La solución de 3x − 1 = 5 − 2x corresponde a 1.</p></div>De ellas son verdaderas","opts":["ambas.","ninguna.","solo la I.","solo la II."],"answer":"C","context":""},{"n":41,"stem":"Lisa lleva cada día al mercado la misma cantidad de naranjas. Ayer vendió la tercera parte de esas naranjas más 40 unidades adicionales y hoy logró vender tres quintas partes de la cantidad que llevó. Si en ambos días ella vendió exactamente la misma cantidad, entonces, ¿cuántas naranjas lleva Lisa al mercado cada día?","opts":["96","120","150","144"],"answer":"C","context":""},{"n":42,"stem":"Considere las siguientes afirmaciones:<div class=\"claims\"><p><b>I.</b> El menor tiempo de uso del parqueo por parte de un usuario el día de ayer fue de una hora.</p><p><b>II.</b> El mayor tiempo de uso entre dos usuarios del parqueo fue de 8 horas el día de ayer.</p></div>De ellas son verdaderas","opts":["ambas.","ninguna.","solo la I.","solo la II."],"answer":"C","context":"Para responder los ítems 42 y 43 considere la siguiente información:<p>La siguiente tabla muestra los resultados de un estudio sobre el tiempo, en horas, que duraron los vehículos en el parqueo de un establecimiento durante el día de ayer:</p><table class=\"original-centered\"><tr><th>Número de horas</th><th>Cantidad de vehículos</th></tr><tr><td>1</td><td>6</td></tr><tr><td>2</td><td>10</td></tr><tr><td>3</td><td>4</td></tr><tr><td>4</td><td>2</td></tr><tr><td>5</td><td>4</td></tr><tr><th>Total</th><th>26</th></tr></table>"},{"n":43,"stem":"Considere las siguientes afirmaciones:<div class=\"claims\"><p><b>I.</b> El día de ayer la moda entre los usuarios fue parquear durante cinco horas los vehículos.</p><p><b>II.</b> El tiempo promedio de estancia de los vehículos en el parqueo el día de ayer fue de dos horas y media aproximadamente.</p></div>De ellas son verdaderas","opts":["ambas.","ninguna.","solo la I.","solo la II."],"answer":"D","context":""},{"n":44,"stem":"Considere las siguientes afirmaciones:<div class=\"claims\"><p><b>I.</b> Obtener una bola roja</p><p><b>II.</b> Obtener una bola con un número primo</p></div>¿Cuál de las situaciones descritas corresponde a una situación aleatoria?","opts":["Ambas","Ninguna","Solo la I","Solo la II"],"answer":"D","context":"Para responder los ítems 44, 45 y 46 considere la siguiente información:<p>Considere las siguientes situaciones referidas a extraer al azar una bola de una urna que contiene únicamente seis bolas rojas, cada una con un número impreso del 1 al 6 sin repetir (las bolas solo son diferenciables por su numeración y todas tienen la misma probabilidad de obtenerse):</p>"},{"n":45,"stem":"Una situación determinista consiste en obtener al azar una bola con un número","opts":["par.","impar.","menor que dos.","mayor que cero."],"answer":"D","context":""},{"n":46,"stem":"La cantidad de puntos muestrales del evento “obtener al azar una bola con un número impreso mayor que cuatro” corresponde a","opts":["1","2","3","4"],"answer":"B","context":""},{"n":47,"stem":"Considere las siguientes afirmaciones referidas a lanzar al aire una moneda donde una cara corresponde a corona y la otra a escudo:<div class=\"claims\"><p><b>I.</b> El espacio muestral del evento descrito consta de 4 elementos.</p><p><b>II.</b> El evento “obtener dos escudos” consta de un solo punto muestral.</p></div>De ellas son verdaderas","opts":["ambas.","ninguna.","solo la I.","solo la II."],"answer":"B","context":""},{"n":48,"stem":"Se tiene en una caja 8 fichas numeradas del 1 al 8 diferenciables solo por el número que presentan impreso. Al extraer una ficha al azar considere los siguientes eventos:<div class=\"claims\"><p><b>I.</b> Extraer una ficha con un número mayor que 7</p><p><b>II.</b> Extraer una ficha con un número divisible por dos</p></div>De ellos son eventos simples","opts":["ambos.","ninguno.","solo el I.","solo el II."],"answer":"C","context":""},{"n":49,"stem":"Un evento imposible es lanzar el dado y obtener al azar un número","opts":["menor que 6.","mayor que 6.","impar.","par."],"answer":"B","context":"Para responder los ítems 49 y 50 considere los siguientes eventos referidos a un dado de seis caras numeradas del 1 al 6 sin repetir número (todas las caras tienen las mismas probabilidades de obtenerse):"},{"n":50,"stem":"Los resultados a favor del evento “obtener un número mayor que dos al lanzar el dado” corresponde a","opts":["{3,4}","{3,4,5}","{2,3,4,5}","{3,4,5,6}"],"answer":"D","context":""},{"n":51,"stem":"Considere las siguientes afirmaciones:<div class=\"claims\"><p><b>I.</b> Es igualmente probable obtener al azar una corbata gris en la caja 1 que en la caja 3.</p><p><b>II.</b> Para tener la mayor probabilidad de obtener al azar una corbata azul se debe elegir la caja 2.</p></div>De ellas son verdaderas","opts":["ambas.","ninguna.","solo la I.","solo la II."],"answer":"D","context":"Para responder los ítems 51, 52 y 53 considere la siguiente información sobre 3 cajas con corbatas de diferentes colores (diferenciables solo por su color):<div class=\"tie-boxes\"><div><b>Caja 1</b><div>4 azules<br>5 negras<br>4 grises</div></div><div><b>Caja 2</b><div>5 azules<br>2 negras<br>6 rojas</div></div><div><b>Caja 3</b><div>4 azules<br>1 negra<br>6 rojas<br>4 grises</div></div></div>"},{"n":52,"stem":"La probabilidad de extraer al azar en un solo intento una corbata negra de la caja 1 corresponde a","opts":["<span class=\"frac\"><span>1</span><span>5</span></span>","<span class=\"frac\"><span>5</span><span>8</span></span>","<span class=\"frac\"><span>5</span><span>13</span></span>","<span class=\"frac\"><span>1</span><span>13</span></span>"],"answer":"C","context":""},{"n":53,"stem":"La probabilidad de extraer al azar en un solo intento una corbata roja de la caja 3 corresponde a","opts":["<span class=\"frac\"><span>1</span><span>15</span></span>","<span class=\"frac\"><span>6</span><span>15</span></span>","<span class=\"frac\"><span>6</span><span>9</span></span>","<span class=\"frac\"><span>1</span><span>6</span></span>"],"answer":"B","context":""},{"n":54,"stem":"La probabilidad de elegir al azar en un solo intento un número par del conjunto A corresponde a","opts":["<span class=\"frac\"><span>1</span><span>3</span></span>","<span class=\"frac\"><span>3</span><span>4</span></span>","<span class=\"frac\"><span>1</span><span>7</span></span>","<span class=\"frac\"><span>3</span><span>7</span></span>"],"answer":"D","context":"Para responder los ítems 54 y 55 considere el siguiente conjunto numérico A = {1, 2, 3, 4, 6, 7, 9}:"},{"n":55,"stem":"¿Cuál es la probabilidad de obtener al azar del conjunto A un número divisible entre 5?","opts":["0","1","<span class=\"frac\"><span>1</span><span>7</span></span>","<span class=\"frac\"><span>5</span><span>7</span></span>"],"answer":"A","context":""}];const TOTAL=QUESTIONS.length,LIMIT=3*60*60;
+const SOLUTIONS={"1":"2/5 = 0,4 es menor que 1/2 = 0,5; además 1/5 = 0,2.","2":"2/3 = 0,666… es decimal periódico.","3":"2 + 2/3 = 8/3.","4":"1/2 kg = 0,5 kg.","5":"3/4 kg no es igual a 2,5 kg; 1,5 kg de azúcar supera 0,750 kg de chocolate.","6":"4/3 + 3/5 = 20/15 + 9/15 = 29/15.","7":"El resultado es 11/4 (2,75). No aparece entre las opciones impresas; el ítem no se califica.","8":"Queda sin sembrar 3/5 de 6000 = 3600 m².","9":"5000 − (4,5 × 400 + 1,5 × 600) = 2300.","10":"4 × 1,25 × 2000 = ₡10 000.","11":"2/5 − 1/10 = 4/10 − 1/10 = 3/10.","12":"−5/8 ÷ 1/4 = −5/2; su inverso es −2/5; 3/5 − 2/5 = 1/5.","13":"La raíz cuarta de 1/16 es 1/2, porque (1/2)⁴ = 1/16.","14":"Los vértices P y Q corresponden a F y E; por eso PQ corresponde a FE.","15":"Con centro A, el punto S corresponde a G.","16":"DE/RS = DF/RT = 3, y el ángulo D corresponde al ángulo R.","17":"EF/ST = 21/7 = 3; DE/RS = 3; RS = 15/3 = 5.","18":"Dos lados y el ángulo comprendido entre ellos determinan L–A–L.","19":"AB/BC = DE/EF; 18/12 = 15/EF, luego EF = 10.","20":"AC/AB = DF/DE; 25/15 = DF/12, luego DF = 20.","21":"Altura/sombra = 5/7,5; altura = 60 × 5/7,5 = 40.","22":"ABCK contiene los cuatro vértices de una cara lateral.","23":"En un prisma recto, ese corte perpendicular a las bases produce un rectángulo.","24":"PR es perpendicular al lado DC desde la cúspide sobre la cara triangular.","25":"P es el ápice y la sección paralela a la base rectangular también es un rectángulo.","26":"y = 1 000 000 − 250 000x, para x = 0, 1, 2, 3, 4.","27":"Monto fijo más pago por kilómetro: y = 2000 + 150x.","28":"2m²n y 3m²n tienen la misma parte literal m²n.","29":"(m²n)³ · mn² = m⁶n³ · mn² = m⁷n⁵.","30":"(3x − y)(3x + y) = (3x)² − y² = 9x² − y².","31":"(x − 4y)² = x² − 8xy + 16y².","32":"−(−1)(3²) + 3(−2) = 9 − 6 = 3.","33":"(x⁴⁰)² ÷ x³⁰ = x⁸⁰⁻³⁰ = x⁵⁰.","34":"Distribuyendo: 2m⁵ + 2m³ − m³ − m = 2m⁵ + m³ − m.","35":"2x = 4 tiene una incógnita y una igualdad.","36":"2m = 6n + 4; m = 3n + 2.","37":"2x = 0 tiene x = 0; 2(x − 3) = 2x − 6 es una identidad.","38":"2(3m − 4) = 4m + 1; 2m = 9; m = 9/2.","39":"Si Sonia tiene s años, Ligia tiene 3s + 2; 4s + 2 = 38, así que s = 9.","40":"c = (a + 1)/3; la segunda ecuación da x = 6/5, no 1.","41":"x/3 + 40 = 3x/5; x = 150.","42":"El mínimo es 1 hora; el máximo de un solo usuario es 5 horas.","43":"La moda es 2 horas; la media es 66/26 ≈ 2,54 horas.","44":"Ser roja es seguro; obtener un número primo depende del azar.","45":"Todos los números de 1 a 6 son mayores que cero.","46":"Mayores que cuatro son 5 y 6: dos resultados.","47":"Al lanzar una sola moneda hay dos resultados; obtener dos escudos no es posible en un solo lanzamiento.","48":"Mayor que 7 solo incluye 8; divisible por dos incluye 2, 4, 6 y 8.","49":"En un dado numerado del 1 al 6 no hay resultados mayores que 6.","50":"Los números mayores que 2 son 3, 4, 5 y 6.","51":"Gris: 4/13 frente a 4/15; azul: 4/13, 5/13 y 4/15, respectivamente.","52":"La caja 1 contiene 5 corbatas negras entre 13 en total.","53":"La caja 3 contiene 6 corbatas rojas entre 15 en total.","54":"Pares: 2, 4 y 6; son 3 de los 7 elementos.","55":"No hay ningún múltiplo de 5 en A; la probabilidad es 0."};
+let current=0,answers=Array(TOTAL).fill(null),started=false,remaining=LIMIT,interval=null,reviewing=false,finished=false,timedOut=false;const $=id=>document.getElementById(id);
+function save(){localStorage.setItem('octavo012026_exam_v1',JSON.stringify({answers,current,started,remaining,finished,timedOut,ts:Date.now()}));}
+function load(){try{const x=JSON.parse(localStorage.getItem('octavo012026_exam_v1')||'null');if(!x)return;answers=x.answers||answers;current=x.current||0;started=!!x.started;finished=!!x.finished;timedOut=!!x.timedOut;remaining=typeof x.remaining==='number'?x.remaining:LIMIT;if(started&&!finished&&x.ts)remaining=Math.max(0,remaining-Math.floor((Date.now()-x.ts)/1000));}catch(e){}}
+function fmt(s){s=Math.max(0,s);let h=Math.floor(s/3600),m=Math.floor(s%3600/60),ss=s%60;return[h,m,ss].map(v=>String(v).padStart(2,'0')).join(':')}
+function updateTimer(){$('timerTop').textContent=fmt(remaining);if(remaining<=0&&!finished){remaining=0;timedOut=true;clearInterval(interval);finish(true)}}
+function tick(){clearInterval(interval);if(finished)return;interval=setInterval(()=>{if(finished){clearInterval(interval);return}remaining=Math.max(0,remaining-1);updateTimer();save()},1000)}
+function start(){if(finished)return;started=true;$('startView').style.display='none';$('examView').style.display='block';render();updateTimer();if(!finished)tick();save()}
+function render(){const q=QUESTIONS[current];$('qnum').textContent=`Ítem ${q.n} de ${TOTAL}`;$('qstatus').textContent=answers[current]?`Respuesta: ${answers[current]}`:'Sin responder';$('qcontext').innerHTML=q.context||'';$('qcontext').style.display=q.context?'block':'none';const fig=FIGURES[q.n],fb=$('qfigure'),fi=$('qfigureimg');
+const figureBeforeStem=!!FIGURES[q.n];
+const afterFig=AFTER_FIGURES[q.n];
+const afb=$('qaftergraphic'), afi=$('qaftergraphicimg');
+
+if(figureBeforeStem){
+  $('qtext').innerHTML='';
+}else{
+  $('qtext').innerHTML=q.stem;
+}
+if(fig){
+  fi.src=fig;
+  fb.style.display='block';
+}else{
+  fi.removeAttribute('src');
+  fb.style.display='none';
+}
+let afterText=document.getElementById('qafterfigure');
+if(!afterText){
+  afterText=document.createElement('div');
+  afterText.id='qafterfigure';
+  afterText.className='qtext';
+  fb.insertAdjacentElement('afterend',afterText);
+}
+if(figureBeforeStem){
+  afterText.innerHTML=q.stem;
+  afterText.style.display='block';
+}else{
+  afterText.innerHTML='';
+  afterText.style.display='none';
+}
+if(afterFig){
+  afi.src=afterFig;
+  afb.style.display='block';
+}else{
+  afi.removeAttribute('src');
+  afb.style.display='none';
+}
+const c=$('choices');c.innerHTML='';q.opts.forEach((txt,i)=>{const L='ABCD'[i],b=document.createElement('button');b.className='choice'+(answers[current]===L?' selected':'');b.innerHTML=`<span class="optletter">${L})</span>${txt}`;b.disabled=finished;if(finished){if(q.answer&&L===q.answer)b.classList.add('correct');else if(q.answer&&answers[current]===L)b.classList.add('wrong');}b.onclick=()=>{if(finished)return;answers[current]=L;save();render()};c.appendChild(b)});$('prevBtn').disabled=current===0;$('nextBtn').textContent=current===TOTAL-1?'Ir a finalizar':'Siguiente →';$('finishBtn').textContent=finished?'Volver al resultado':'Finalizar examen';renderGrid();if(window.MathJax&&MathJax.typesetPromise){MathJax.typesetClear&&MathJax.typesetClear([$('qcontext'),$('qtext'),$('qafterfigure'),$('choices')]);MathJax.typesetPromise([$('qcontext'),$('qtext'),$('qafterfigure'),$('choices')]);}}
+function renderGrid(){const g=$('grid');g.innerHTML='';let count=answers.filter(Boolean).length;QUESTIONS.forEach((q,i)=>{const b=document.createElement('button');b.className='qjump '+(answers[i]?'answered':'unanswered')+(i===current?' current':'');b.textContent=q.n;b.onclick=()=>{current=i;render();save()};g.appendChild(b)});$('countTop').textContent=`${count}/${TOTAL}`;$('countSide').textContent=`${count} de ${TOTAL} respondidos`}
+function finish(auto=false){if(finished){$('examView').style.display='none';$('resultView').style.display='block';return}clearInterval(interval);if(auto)timedOut=true;remaining=Math.max(0,remaining);started=false;finished=true;save();$('examView').style.display='none';$('startView').style.display='none';$('resultView').style.display='block';let cor=0;answers.forEach((a,i)=>{if(QUESTIONS[i].answer&&a===QUESTIONS[i].answer)cor++});let graded=QUESTIONS.filter(q=>q.answer).length;let blank=answers.filter((x,i)=>!x&&QUESTIONS[i].answer).length,wrong=graded-cor-blank;$('scoreText').textContent=`${cor}/${graded}`;$('percentText').textContent=`${(cor/graded*100).toFixed(1)}% de respuestas correctas${timedOut?' · Tiempo agotado':''}`;$('correctStat').textContent=cor;$('wrongStat').textContent=wrong;$('blankStat').textContent=blank;window.scrollTo({top:0,behavior:'smooth'})}
+function review(){
+reviewing=!reviewing;
+const box=$('review');
+box.style.display=reviewing?'grid':'none';
+$('reviewBtn').textContent=reviewing?'Ocultar revisión':'Revisar respuestas';
+if(!reviewing)return;
+box.innerHTML='';
+QUESTIONS.forEach((q,i)=>{
+ const r=document.createElement('div');
+ r.className='review-row';
+ const ok=!!q.answer&&answers[i]===q.answer;
+ const sol=SOLUTIONS[String(q.n)]||'';
+ r.innerHTML=`<div><b>Ítem ${q.n}</b></div><div>Tu respuesta: <span class="${ok?'good':'bad'}">${answers[i]||'—'}</span></div><div>${q.answer?`Correcta: <span class="good">${q.answer}</span>`:"Sin opción correcta; no califica"}</div><div class="review-solution"><b>Solución:</b>${sol}</div>`;
+ r.onclick=()=>{current=i;$('resultView').style.display='none';$('examView').style.display='block';render()};
+ box.appendChild(r);
+});
+if(window.MathJax && MathJax.typesetPromise){
+  MathJax.typesetPromise([box]).catch(()=>{});
+}
+}
+function requestRestart(){$('restartConfirm').style.display='flex';$('cancelRestartBtn').focus()}
+function closeRestart(){$('restartConfirm').style.display='none';$('restartBtn').focus()}
+function restart(){clearInterval(interval);interval=null;localStorage.removeItem('octavo012026_exam_v1');answers=Array(TOTAL).fill(null);current=0;remaining=LIMIT;started=false;finished=false;timedOut=false;reviewing=false;$('restartConfirm').style.display='none';$('review').style.display='none';$('reviewBtn').textContent='Revisar respuestas';$('examView').style.display='none';$('resultView').style.display='none';$('startView').style.display='block';renderGrid();updateTimer()}
+$('startBtn').onclick=start;$('finishBtn').onclick=()=>finish(false);$('reviewBtn').onclick=review;$('restartBtn').onclick=requestRestart;$('cancelRestartBtn').onclick=closeRestart;$('confirmRestartBtn').onclick=restart;$('restartConfirm').onclick=e=>{if(e.target===$('restartConfirm'))closeRestart()};document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('restartConfirm').style.display==='flex')closeRestart()});$('prevBtn').onclick=()=>{if(current>0){current--;render();save()}};$('nextBtn').onclick=()=>{if(current<TOTAL-1){current++;render();save()}else $('finishBtn').scrollIntoView({behavior:'smooth'})};load();updateTimer();if(finished){$('startView').style.display='none';$('examView').style.display='none';$('resultView').style.display='block';let cor=0;answers.forEach((a,i)=>{if(QUESTIONS[i].answer&&a===QUESTIONS[i].answer)cor++});let graded=QUESTIONS.filter(q=>q.answer).length;let blank=answers.filter((x,i)=>!x&&QUESTIONS[i].answer).length,wrong=graded-cor-blank;$('scoreText').textContent=`${cor}/${graded}`;$('percentText').textContent=`${(cor/graded*100).toFixed(1)}% de respuestas correctas${timedOut?' · Tiempo agotado':''}`;$('correctStat').textContent=cor;$('wrongStat').textContent=wrong;$('blankStat').textContent=blank}else if(started)start();
+if(document.modelContext?.registerTool){document.modelContext.registerTool({name:'read_exam_progress',description:'Consultar el progreso visible de la prueba sin revelar las respuestas correctas.',inputSchema:{type:'object',properties:{},additionalProperties:false},annotations:{readOnlyHint:true},execute:()=>({total:TOTAL,current:current+1,answered:answers.filter(Boolean).length,remaining,finished})});}</script></body></html>
