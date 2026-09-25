@@ -32,7 +32,7 @@
   <div id="content" hidden>
     <div class="cards"><div class="card"><span>Intentos recibidos</span><strong id="count">0</strong></div><div class="card"><span>Promedio de aciertos</span><strong id="average">0</strong></div><div class="card"><span>Promedio porcentual</span><strong id="percent">0%</strong></div></div>
     <section class="panel"><h2>Aciertos por pregunta</h2><div id="chart" class="bars"></div><p class="muted">La pregunta 7 no se califica.</p></section>
-    <section class="panel"><h2>Resultados individuales</h2><div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Estudiante</th><th>Respondidas</th><th>Correctas</th><th>Porcentaje</th><th>Duración</th></tr></thead><tbody id="rows"></tbody></table></div><p id="empty" class="muted" hidden>No hay resultados en esta sesión.</p></section>
+    <section class="panel"><h2>Resultados individuales</h2><div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Estudiante</th><th>Respondidas</th><th>Correctas</th><th>Incorrectas</th><th>Sin responder</th><th>Porcentaje</th><th>Duración</th></tr></thead><tbody id="rows"></tbody></table></div><p id="empty" class="muted" hidden>No hay resultados en esta sesión.</p></section>
     <section class="panel"><h2>Respuestas por estudiante</h2><div id="details"></div></section>
   </div>
 </main>
@@ -61,11 +61,11 @@ function render(){const session=$('session').value,term=$('search').value.trim()
   $('average').textContent=source.length?(source.reduce((n,r)=>n+r.correct,0)/source.length).toFixed(1):'0';
   $('percent').textContent=source.length?(100*source.reduce((n,r)=>n+r.percent,0)/source.length).toFixed(1)+'%':'0%';
   $('rows').replaceChildren();$('details').replaceChildren();$('empty').hidden=visible.length>0;
-  for(const r of visible){const tr=document.createElement('tr');for(const value of [r.date,r.name+' '+r.lastName,r.answered+' / 55',r.correct+' / '+r.evaluable,(100*r.percent).toFixed(1)+'%',r.minutes+' min']){
+  for(const r of visible){const tr=document.createElement('tr');const wrong=(r.answers||[]).reduce((n,a,i)=>n+(i!==6&&a&&!((r.correctQuestions||[])[i])?1:0),0);for(const value of [r.date,r.name+' '+r.lastName,r.answered+' / 55',r.correct+' / '+r.evaluable,wrong,55-r.answered,(100*r.percent).toFixed(1)+'%',r.minutes+' min']){
     let td=document.createElement('td');td.textContent=value;tr.append(td)}$('rows').append(tr);
     let details=document.createElement('details'),summary=document.createElement('summary'),grid=document.createElement('div');
     summary.textContent=r.name+' '+r.lastName+' · '+r.date;grid.className='answers';
-    (r.answers||[]).forEach((answer,i)=>{let cell=document.createElement('div'),number=document.createElement('span');cell.className='answer';number.textContent='Pregunta '+(i+1);cell.append(number,document.createTextNode(answer||'—'));grid.append(cell)});
+    (r.answers||[]).forEach((answer,i)=>{let cell=document.createElement('div'),number=document.createElement('span');cell.className='answer';number.textContent='Pregunta '+(i+1);const state=i===6?' (sin calificar)':!answer?' (sin responder)':(r.correctQuestions||[])[i]?' (correcta)':' (incorrecta)';cell.append(number,document.createTextNode((answer||'—')+state));grid.append(cell)});
     details.append(summary,grid);$('details').append(details)
   }
   const chart=$('chart');chart.replaceChildren();for(let i=0;i<55;i++){
