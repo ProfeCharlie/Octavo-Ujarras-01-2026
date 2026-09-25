@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resultados · Matemática Octavo</title>
+<style>
+  :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#142338;background:#f3f6fa}
+  *{box-sizing:border-box}body{margin:0}header{background:#123d70;color:white;padding:24px max(24px,calc((100vw - 1120px)/2));box-shadow:0 2px 12px #1734551a}
+  header h1{font-size:clamp(1.35rem,3vw,2rem);margin:0 0 5px}header p{margin:0;color:#dceafa}
+  main{max-width:1168px;margin:auto;padding:24px}.toolbar{display:flex;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:18px}
+  label{font-weight:650;font-size:.9rem;display:grid;gap:6px}select,input{font:inherit;background:white;border:1px solid #c8d5e5;border-radius:9px;padding:10px 12px;min-width:220px;color:#142338}
+  button{font:inherit;cursor:pointer;border:0;border-radius:9px;background:#205d9b;color:white;padding:11px 17px;font-weight:700}button:hover{background:#174a7c}
+  .muted{color:#536780}#updated{margin-left:auto;font-size:.9rem}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .card,.panel{background:white;border:1px solid #e1e8f1;border-radius:16px;box-shadow:0 4px 16px #223e6010}
+  .card{padding:18px}.card span{display:block;color:#536780}.card strong{display:block;font-size:2rem;margin-top:3px}.panel{padding:20px;margin-top:18px}
+  h2{font-size:1.22rem;margin:0 0 15px}.bars{display:grid;grid-template-columns:repeat(auto-fill,minmax(42px,1fr));gap:9px;align-items:end;min-height:190px;padding-top:20px}
+  .bar-wrap{text-align:center;font-size:.79rem}.bar{height:126px;display:flex;align-items:end;background:#edf3fa;border-radius:6px 6px 0 0;overflow:hidden}
+  .bar i{display:block;width:100%;background:#2e75bb;min-height:0}.bar-wrap b{display:block;margin-top:5px}table{border-collapse:collapse;width:100%;font-size:.93rem}
+  th,td{text-align:left;padding:12px;border-bottom:1px solid #e6ecf3;white-space:nowrap}th{color:#536780;font-weight:650}tbody tr:hover{background:#f7faff}
+  .table-wrap{overflow-x:auto}.answers{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:7px;margin-top:12px}
+  .answer{background:#eef4fb;border-radius:8px;padding:8px;text-align:center}.answer span{display:block;color:#536780;font-size:.75rem}
+  details{border-top:1px solid #e6ecf3;padding:12px 0}summary{cursor:pointer;font-weight:650}#message{padding:16px;border-radius:10px;background:#e8f1fb}
+  @media(max-width:650px){main{padding:16px}.cards{grid-template-columns:1fr}#updated{margin-left:0;width:100%}}
+</style>
+</head>
+<body>
+<header><h1>Resultados · Matemática Octavo</h1><p>Convocatoria 01-2026 · Consulta de resultados</p></header>
+<main>
+  <div class="toolbar"><label>Sesión<select id="session"></select></label><label>Buscar estudiante<input id="search" type="search" placeholder="Nombre o apellido"></label><button id="refresh" type="button">Actualizar</button><span id="updated" class="muted"></span></div>
+  <div id="message" role="status">Cargando resultados…</div>
+  <div id="content" hidden>
+    <div class="cards"><div class="card"><span>Intentos recibidos</span><strong id="count">0</strong></div><div class="card"><span>Promedio de aciertos</span><strong id="average">0</strong></div><div class="card"><span>Promedio porcentual</span><strong id="percent">0%</strong></div></div>
+    <section class="panel"><h2>Aciertos por pregunta</h2><div id="chart" class="bars"></div><p class="muted">La pregunta 7 no se califica.</p></section>
+    <section class="panel"><h2>Resultados individuales</h2><div class="table-wrap"><table><thead><tr><th>Fecha</th><th>Estudiante</th><th>Respondidas</th><th>Correctas</th><th>Porcentaje</th><th>Duración</th></tr></thead><tbody id="rows"></tbody></table></div><p id="empty" class="muted" hidden>No hay resultados en esta sesión.</p></section>
+    <section class="panel"><h2>Respuestas por estudiante</h2><div id="details"></div></section>
+  </div>
+</main>
+<script>
+'use strict';
+const API='https://script.google.com/macros/s/AKfycbwtRGWJPNc8n413pPLvQE5ntBUFfJeG2qKJVxhhNG9CM8tlxqXb-j07anfudEV7Zz0y/exec';
+const $=id=>document.getElementById(id);let all=[];
+function fetchResults(){
+  $('message').hidden=false;$('message').textContent='Cargando resultados…';$('refresh').disabled=true;
+  const callback='examStatus_'+Math.random().toString(36).slice(2,12),script=document.createElement('script');
+  let ended=false;const timer=setTimeout(()=>finish('No se pudieron cargar los resultados. Inténtalo de nuevo.'),16000);
+  function finish(error){if(ended)return;ended=true;clearTimeout(timer);delete window[callback];script.remove();$('refresh').disabled=false;
+    if(error){$('message').hidden=false;$('message').textContent=error}else{$('message').hidden=true}}
+  window[callback]=data=>{if(data.message&&!data.results){finish(data.message);return}
+    all=Array.isArray(data.results)?data.results:[];const old=$('session').value;
+    const sessions=[...new Set(all.map(r=>r.session))].sort((a,b)=>a.localeCompare(b,'es')).reverse();
+    $('session').replaceChildren();for(const name of sessions){let option=new Option(name,name);$('session').add(option)}
+    $('session').value=sessions.includes(old)?old:(sessions[0]||'');
+    $('updated').textContent='Actualizado: '+new Date().toLocaleTimeString('es-CR',{timeZone:'America/Costa_Rica',hour:'2-digit',minute:'2-digit'});
+    render();finish()};script.onerror=()=>finish('No se pudieron cargar los resultados. Inténtalo de nuevo.');
+  script.src=API+'?op=results&callback='+callback+'&t='+Date.now();document.head.append(script)
+}
+function render(){const session=$('session').value,term=$('search').value.trim().toLocaleLowerCase('es');
+  const source=all.filter(r=>r.session===session),visible=source.filter(r=>(r.name+' '+r.lastName).toLocaleLowerCase('es').includes(term));
+  $('content').hidden=false;$('count').textContent=source.length;
+  $('average').textContent=source.length?(source.reduce((n,r)=>n+r.correct,0)/source.length).toFixed(1):'0';
+  $('percent').textContent=source.length?(100*source.reduce((n,r)=>n+r.percent,0)/source.length).toFixed(1)+'%':'0%';
+  $('rows').replaceChildren();$('details').replaceChildren();$('empty').hidden=visible.length>0;
+  for(const r of visible){const tr=document.createElement('tr');for(const value of [r.date,r.name+' '+r.lastName,r.answered+' / 55',r.correct+' / '+r.evaluable,(100*r.percent).toFixed(1)+'%',r.minutes+' min']){
+    let td=document.createElement('td');td.textContent=value;tr.append(td)}$('rows').append(tr);
+    let details=document.createElement('details'),summary=document.createElement('summary'),grid=document.createElement('div');
+    summary.textContent=r.name+' '+r.lastName+' · '+r.date;grid.className='answers';
+    (r.answers||[]).forEach((answer,i)=>{let cell=document.createElement('div'),number=document.createElement('span');cell.className='answer';number.textContent='Pregunta '+(i+1);cell.append(number,document.createTextNode(answer||'—'));grid.append(cell)});
+    details.append(summary,grid);$('details').append(details)
+  }
+  const chart=$('chart');chart.replaceChildren();for(let i=0;i<55;i++){
+    let count=source.reduce((n,r)=>n+((r.correctQuestions||[])[i]?1:0),0);
+    let wrap=document.createElement('div'),bar=document.createElement('div'),fill=document.createElement('i'),label=document.createElement('b');
+    wrap.className='bar-wrap';bar.className='bar';fill.style.height=source.length?(count/source.length*100)+'%':'0%';bar.append(fill);label.textContent='P'+(i+1);wrap.append(bar,label);chart.append(wrap)
+  }
+}
+$('session').addEventListener('change',render);$('search').addEventListener('input',render);$('refresh').addEventListener('click',fetchResults);fetchResults();
+</script>
+</body>
+</html>
